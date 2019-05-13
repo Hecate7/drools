@@ -1,0 +1,43 @@
+//包路径，逻辑路径
+package rules
+import com.lrq.demo.drools.entity.Person
+
+//规则体（LHS+RHS+属性）
+rule "rule_demo_1"
+    when
+//    LHS,若LHS部分为空，引擎会自动添加一个eval(true)的条件。
+//    放置判断条件
+        eval(true)
+    then
+//    RHS
+        System.out.println("Hello, Rule_demo_1");
+end
+
+rule "rule_demo_person"
+    attributes
+        salience 2
+        no-loop true
+        date-effective "12-may-2018"
+        enabled false
+        activation-group "groupName"
+        agenda-group "group1"
+        auto-focus
+    when
+//    [绑定变量名:]Object([field约束])
+        $p:Person(name=="张三",age==40)
+    then
+        $p.setName("张三");
+        update($p)
+        $p.setDesc("NAME: From 张三 To 张三");
+        System.out.println($p.getName()+", "+$p.getAge()+", "+$p.getDesc());
+end
+
+//rule "rule_demo_age"
+//    attributes
+//        salience 3
+//    when
+//        $p:Person()
+//    then
+//        $p.setAge(35);
+//        System.out.println("改完后的名字："+$p.getName()+"，改完后的年龄："+$p.getAge());
+//end

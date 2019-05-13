@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
+        <kbase name="hello_rule" packages="rules">
+            <!--有状态的KieSession(stateful)以及无状态的StatelessKieSession(stateless)，默认为stateful-->
+            <!--stateless：数据校验、运算、数据过滤、消息路由、任何能被描述成函数或公式的规则-->
+            <ksession name="hello_session" type="stateful"/>
+        </kbase>
+</kmodule>
